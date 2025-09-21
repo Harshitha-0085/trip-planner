@@ -16,7 +16,21 @@ destination = st.text_input("Destination", "Goa")
 days = st.slider("Number of Days", 1, 10, 3)
 num_people = st.number_input("Number of People", 1, 10, 2)
 budget = st.number_input("Budget (INR)", 1000, 100000, 15000)
-theme = st.selectbox("Trip Theme", ["Heritage", "Nightlife", "Adventure", "Relax"])
+theme = st.selectbox(
+    "Trip Theme",
+    [
+        "Heritage",
+        "Nightlife",
+        "Adventure",
+        "Relax",
+        "Romantic",
+        "Family",
+        "Solo Travel",
+        "Nature",
+        "Foodie",
+        "Cultural Festivals"
+    ]
+)
 food_pref = st.selectbox("Food Preference", ["Vegetarian", "Non-Veg", "Vegan", "Mixed"])
 
 # --- Generate Itinerary ---
