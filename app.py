@@ -14,8 +14,10 @@ st.title("🌍 AI Trip Planner Demo")
 # --- User Inputs ---
 destination = st.text_input("Destination", "Goa")
 days = st.slider("Number of Days", 1, 10, 3)
+num_people = st.number_input("Number of People", 1, 10, 2)
 budget = st.number_input("Budget (INR)", 1000, 100000, 15000)
 theme = st.selectbox("Trip Theme", ["Heritage", "Nightlife", "Adventure", "Relax"])
+food_pref = st.selectbox("Food Preference", ["Vegetarian", "Non-Veg", "Vegan", "Mixed"])
 
 # --- Generate Itinerary ---
 if st.button("Generate Itinerary"):
@@ -26,14 +28,17 @@ if st.button("Generate Itinerary"):
     You are a smart trip planner AI. 
     Destination: {destination}
     Days: {days}
+    Number of People: {num_people}
     Budget: ₹{budget}
     Theme: {theme}
+    Food Preference: {food_pref}
 
     Requirements:
     1. Break itinerary day by day (Day 1, Day 2, ...).
     2. Each day must have: Morning, Afternoon, Evening, Food, Cost, Hidden Gem.
-    3. Keep total under budget and show total + savings at the end.
-    4. Write in simple, clear sentences with emojis.
+    3. Adjust food recommendations based on Food Preference.
+    4. Keep total under budget and show total + savings at the end.
+    5. Write in simple, clear sentences with emojis.
     """
 
     try:
@@ -66,11 +71,13 @@ if st.button("Book Now 💳"):
         st.session_state.bookings.append({
             "destination": destination,
             "days": days,
-            "budget": budget
+            "num_people": num_people,
+            "budget": budget,
+            "food_pref": food_pref
         })
         st.success("✅ Payment successful! Booking confirmed.")
         st.balloons()
-        st.info(f"Trip to {destination} for {days} days under ₹{budget} is booked!")
+        st.info(f"Trip to {destination} for {days} days ({num_people} people, {food_pref}) under ₹{budget} is booked!")
 
 # --- BigQuery analytics simulation ---
 st.subheader("📊 Trip Analytics (BigQuery Demo)")
